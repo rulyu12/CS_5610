@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MA5</title>
+    <style>
+      #square {
+        border-color: black;
+        border-style: solid;
+        border-width: 1px;
+        width: 100px;
+        height: 100px;
+        background-color: white;
+      }
+      #invalid {
+        color: red;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="square"></div>
+    <span>Please enter a color：</span><input type="text" id="color-input"><button id="button">Change Color</button>
+    <p id = "invalid"> </p>
+    <script>
+      const colorSet = new Set();
+      colorSet.add("red");
+      colorSet.add("blue");
+      colorSet.add("green");
+      const colorBtn = document.getElementById("button");
+      const invalidText = document.getElementById("invalid");
+      const square = document.getElementById("square");
+      const colorInput = document.getElementById("color-input");
+
+      colorBtn.addEventListener("click", function () {
+        invalidText.style.display = "none";
+        
+        if(colorSet.has(colorInput.value)) {
+            square.style.backgroundColor = colorInput.value;
+        }
+        else{
+            invalidText.style.display = "block";
+            square.style.backgroundColor = "white";
+            invalidText.textContent = `${colorInput.value} is not valid color. Please choose red, blue and green`;
+        }
+      });
+    </script>
+  </body>
+</html>
